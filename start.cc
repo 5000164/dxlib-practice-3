@@ -1,5 +1,6 @@
 #include "DxLib.h"
 #include "forward_declaration.h"
+void MainProcess();
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {

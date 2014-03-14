@@ -2,14 +2,21 @@
 #include "picojson.h"
 
 class Json {
+	std::string input_file_name;
 public:
-	std::string GetString(std::string, std::string);
-	picojson::array GetArray(std::string, std::string);
+	Json(std::string);
+	std::string GetString(std::string);
+	picojson::array GetArray(std::string);
 };
 
-std::string Json::GetString(std::string file_name, std::string key)
+Json::Json(std::string input_file_name)
 {
-	std::string path = file_name;
+	this->input_file_name = input_file_name;
+}
+
+std::string Json::GetString(std::string key)
+{
+	std::string path = input_file_name;
 	std::ifstream file;
 	file.open(path.c_str());
 
@@ -31,9 +38,9 @@ std::string Json::GetString(std::string file_name, std::string key)
 	return string;
 }
 
-picojson::array Json::GetArray(std::string file_name, std::string key)
+picojson::array Json::GetArray(std::string key)
 {
-	std::string path = file_name;
+	std::string path = input_file_name;
 	std::ifstream file;
 	file.open(path.c_str());
 
@@ -53,40 +60,6 @@ picojson::array Json::GetArray(std::string file_name, std::string key)
 	picojson::array &array = o[key].get<picojson::array>();
 
 	return array;
-}
-
-
-
-class Event {
-
-};
-
-class character {
-
-};
-
-class player {
-
-};
-
-class enemy {
-
-};
-
-
-
-class Window {
-	int background_color[3];
-public:
-	Window();
-};
-
-Window::Window()
-{
-	background_color[0] = 30;
-	background_color[1] = 30;
-	background_color[2] = 30;
-	SetBackgroundColor(background_color[0], background_color[1], background_color[2]);
 }
 
 
@@ -130,6 +103,86 @@ void Font::Draw(std::string text, int x, int y)
 	memcpy(text_chara, text.c_str(), len + 1);
 
 	DrawString(x, y, text_chara, font_color_dx);
+}
+
+
+
+class Event {
+public:
+	void Run(int);
+};
+
+void Event::Run(int event_number)
+{
+	Font font;
+	Json text_json("text.json");
+
+	if (event_number == 0)
+	{
+		SetDrawScreen(DX_SCREEN_FRONT);
+		std::string string = text_json.GetString("battle");
+		font.Draw(string, 100, 150);
+	}
+	else if (event_number == 1)
+	{
+		SetDrawScreen(DX_SCREEN_FRONT);
+		std::string string = text_json.GetString("escape");
+		font.Draw(string, 100, 150);
+	}
+}
+
+
+
+class Key {
+public:
+	void OnceInput();
+};
+
+void Key::OnceInput()
+{
+	// キーがなにも押されていない状態になるまで進まない
+	while (ProcessMessage() == 0 && CheckHitKeyAll() != 0)
+	{
+		// キーがなにか押されている間はループ
+	}
+
+	// キーがなにか押されている状態になるまで進まない
+	while (ProcessMessage() == 0 && CheckHitKeyAll() == 0)
+	{
+		// キーがなにも押されていない間はループ
+	}
+
+	return;
+}
+
+
+
+class Character {
+
+};
+
+class Player {
+
+};
+
+class Enemy {
+
+};
+
+
+
+class Window {
+	int background_color[3];
+public:
+	Window();
+};
+
+Window::Window()
+{
+	background_color[0] = 30;
+	background_color[1] = 30;
+	background_color[2] = 30;
+	SetBackgroundColor(background_color[0], background_color[1], background_color[2]);
 }
 
 

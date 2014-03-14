@@ -9,10 +9,9 @@
 // メイン処理
 void MainProcess()
 {
-	Json json;
+	Json text_json("text.json");
 
-	// メニュー文章読み込み
-	picojson::array array = json.GetArray("text.json", "menu");
+	picojson::array array = text_json.GetArray("menu");
 
 	std::string menu_text[2];
 	int count = 0;
@@ -26,6 +25,8 @@ void MainProcess()
 	Window window;
 	Font font;
 	Triangle selector;
+	Event event;
+	Key key;
 
 
 	// 画面描画
@@ -49,12 +50,12 @@ void MainProcess()
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
 	{
 		// キーボードの入力待ち
-		OnceKeyInput();
+		key.OnceInput();
 
 
 		if (CheckHitKey(KEY_INPUT_RETURN) != 0)
 		{
-			run(menu_selector);
+			event.Run(menu_selector);
 		}
 		else if (CheckHitKey(KEY_INPUT_UP))
 		{
@@ -89,51 +90,4 @@ void MainProcess()
 	///
 
 	return;
-}
-
-
-
-
-///
-/// キーの連続入力を防止する
-///
-void OnceKeyInput()
-{
-	// キーがなにも押されていない状態になるまで進まない
-	while (ProcessMessage() == 0 && CheckHitKeyAll() != 0)
-	{
-		// キーがなにか押されている間はループ
-	}
-
-	// キーがなにか押されている状態になるまで進まない
-	while (ProcessMessage() == 0 && CheckHitKeyAll() == 0)
-	{
-		// キーがなにも押されていない間はループ
-	}
-
-	return;
-}
-
-
-
-///
-/// 実行
-///
-void run(int menu_selector)
-{
-	Font font;
-	Json json;
-
-	if (menu_selector == 0)
-	{
-		SetDrawScreen(DX_SCREEN_FRONT);
-		std::string string = json.GetString("text.json", "battle");
-		font.Draw(string, 100, 150);
-	}
-	else if (menu_selector == 1)
-	{
-		SetDrawScreen(DX_SCREEN_FRONT);
-		std::string string = json.GetString("text.json", "escape");
-		font.Draw(string, 100, 150);
-	}
 }
