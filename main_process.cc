@@ -11,6 +11,7 @@ void MainProcess()
 {
 	Json json;
 
+	// メニュー文章読み込み
 	picojson::array array = json.GetArray("text.json", "menu");
 
 	std::string menu_text[2];
@@ -22,24 +23,17 @@ void MainProcess()
 
 
 
-
-
-
 	Window window;
 	Font font;
 	Triangle selector;
 
 
-
-	// テキスト表示開始位置
-	int menu_text_position[2] = { 60, 20 };
-
+	// 画面描画
+	SetDrawScreen(DX_SCREEN_BACK);
 	ClearDrawScreen();
-	int position_1[2] = { 35, 20 };
-	int position_2[2] = { 35, 40 };
-	int position_3[2] = { 45, 30 };
-	int color[3] = { 230, 230, 230 };
-	selector.Draw(position_1, position_2, position_3, color);
+	font.Draw(menu_text[0], 50, 50);
+	font.Draw(menu_text[1], 50, 100);
+	selector.Draw(35, 49, 35, 69, 45, 59, 230, 230, 230);
 	ScreenFlip();
 
 
@@ -67,11 +61,11 @@ void MainProcess()
 			// 方向キー上：上に移動
 			menu_selector = 0;
 
-			int position_1[2] = { 35, 20 };
-			int position_2[2] = { 35, 40 };
-			int position_3[2] = { 45, 30 };
-			int color[3] = { 230, 230, 230 };
-			selector.Draw(position_1, position_2, position_3, color);
+			SetDrawScreen(DX_SCREEN_BACK);
+			ClearDrawScreen();
+			font.Draw(menu_text[0], 50, 50);
+			font.Draw(menu_text[1], 50, 100);
+			selector.Draw(35, 49, 35, 69, 45, 59, 230, 230, 230);
 			ScreenFlip();
 		}
 		else if (CheckHitKey(KEY_INPUT_DOWN))
@@ -79,11 +73,11 @@ void MainProcess()
 			// 方向キー下：下に移動
 			menu_selector = 1;
 
-			int position_1[2] = { 35, 51 };
-			int position_2[2] = { 35, 71 };
-			int position_3[2] = { 45, 61 };
-			int color[3] = { 230, 230, 230 };
-			selector.Draw(position_1, position_2, position_3, color);
+			SetDrawScreen(DX_SCREEN_BACK);
+			ClearDrawScreen();
+			font.Draw(menu_text[0], 50, 50);
+			font.Draw(menu_text[1], 50, 100);
+			selector.Draw(35, 99, 35, 119, 45, 109, 230, 230, 230);
 			ScreenFlip();
 		}
 	}
@@ -128,20 +122,18 @@ void OnceKeyInput()
 void run(int menu_selector)
 {
 	Font font;
+	Json json;
+
 	if (menu_selector == 0)
 	{
-		ClearDrawScreen();
-		char text[256][256] = { "たたかった" };
-		int position[2] = { 50, 50 };
-		font.Draw(text, 1, position);
-		ScreenFlip();
+		SetDrawScreen(DX_SCREEN_FRONT);
+		std::string string = json.GetString("text.json", "battle");
+		font.Draw(string, 100, 150);
 	}
 	else if (menu_selector == 1)
 	{
-		ClearDrawScreen();
-		char text[256][256] = { "逃げた" };
-		int position[2] = {50, 50};
-		font.Draw(text, 2, position);
-		ScreenFlip();
+		SetDrawScreen(DX_SCREEN_FRONT);
+		std::string string = json.GetString("text.json", "escape");
+		font.Draw(string, 100, 150);
 	}
 }

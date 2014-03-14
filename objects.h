@@ -3,8 +3,33 @@
 
 class Json {
 public:
+	std::string GetString(std::string, std::string);
 	picojson::array GetArray(std::string, std::string);
 };
+
+std::string Json::GetString(std::string file_name, std::string key)
+{
+	std::string path = file_name;
+	std::ifstream file;
+	file.open(path.c_str());
+
+	if (file.fail()) {
+	}
+
+	std::istreambuf_iterator<char> first(file);
+	std::istreambuf_iterator<char> last;
+	std::string json_str(first, last);
+
+	picojson::value json;
+	std::string err;
+	picojson::parse(json, json_str.begin(), json_str.end(), &err);
+
+	picojson::object &o = json.get<picojson::object>();
+
+	std::string string = o[key].get<std::string>();
+
+	return string;
+}
 
 picojson::array Json::GetArray(std::string file_name, std::string key)
 {
@@ -50,20 +75,6 @@ class enemy {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class Window {
 	int background_color[3];
 public:
@@ -90,7 +101,7 @@ class Font {
 	int shadow_position[2];
 public:
 	Font();
-	void Draw(char[256][256], int, int[2]);
+	void Draw(std::string, int, int);
 };
 
 Font::Font()
@@ -112,37 +123,13 @@ Font::Font()
 	ChangeFontType(DX_FONTTYPE_ANTIALIASING_8X8);
 }
 
-void Font::Draw(char text[256][256], int text_row, int position[2])
+void Font::Draw(std::string text, int x, int y)
 {
-	int screen = MakeScreen(1024, 768, FALSE);
-	SetDrawScreen(screen);
-	ClearDrawScreen();
+	int len = text.length();
+	char* text_chara = new char[len + 1];
+	memcpy(text_chara, text.c_str(), len + 1);
 
-	// ‰e‚Ì•`‰æ
-	for (int row = 0; row < text_row; row++)
-	{
-		int x = position[0] + shadow_position[0];
-		int y = (int)(position[1] + ((font_size * line_height) * row) + shadow_position[1]);
-
-		DrawString(x, y, text[row], shadow_color_dx);
-	}
-
-	GraphFilter(screen, DX_GRAPH_FILTER_GAUSS, 8, 50);
-
-
-
-	SetDrawScreen(DX_SCREEN_BACK);
-	ClearDrawScreen();
-	DrawGraph(0, 0, screen, FALSE);
-
-	// ƒeƒLƒXƒg‚Ì•`‰æ
-	for (int row = 0; row < text_row; row++)
-	{
-		int x = position[0];
-		int y = (int)(position[1] + ((font_size * line_height) * row));
-
-		DrawString(x, y, text[row], font_color_dx);
-	}
+	DrawString(x, y, text_chara, font_color_dx);
 }
 
 
@@ -151,15 +138,15 @@ class Triangle {
 	int color_dx;
 public:
 	Triangle();
-	void Draw(int[2], int[2], int[2], int[3]);
+	void Draw(int, int, int, int, int, int, int, int, int);
 };
 
 Triangle::Triangle()
 {
 }
 
-void Triangle::Draw(int position_1[2], int position_2[2], int position_3[2], int color[3])
+void Triangle::Draw(int position_1_x, int position_1_y, int position_2_x, int position_2_y, int position_3_x, int position_3_y, int r, int g, int b)
 {
-	color_dx = GetColor(color[0], color[1], color[2]);
-	DrawTriangle(position_1[0], position_1[1], position_2[0], position_2[1], position_3[0], position_3[1], color_dx, FALSE);
+	color_dx = GetColor(r, g, b);
+	DrawTriangle(position_1_x, position_1_y, position_2_x, position_2_y, position_3_x, position_3_y, color_dx, FALSE);
 }
