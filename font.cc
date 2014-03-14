@@ -4,7 +4,6 @@
 
 Font::Font()
 {
-	font_size = 18;
 	font_color[0] = 230;
 	font_color[1] = 230;
 	font_color[2] = 230;
@@ -16,9 +15,6 @@ Font::Font()
 	shadow_position[1] = 2;
 	font_color_dx = GetColor(font_color[0], font_color[1], font_color[2]);
 	shadow_color_dx = GetColor(shadow_color[0], shadow_color[1], shadow_color[2]);
-	ChangeFont("‚l‚r ‚oƒSƒVƒbƒN");
-	SetFontSize(font_size);
-	ChangeFontType(DX_FONTTYPE_ANTIALIASING_8X8);
 }
 
 void Font::Draw(std::string text, int x, int y)
