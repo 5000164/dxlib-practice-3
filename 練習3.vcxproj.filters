@@ -23,9 +23,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="forward_declaration.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="dx_lib.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>

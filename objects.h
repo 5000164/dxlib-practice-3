@@ -1,6 +1,108 @@
 #include "dx_lib.h"
 #include "picojson.h"
 
+class Window {
+	int background_color[3];
+public:
+	Window();
+};
+
+Window::Window()
+{
+	background_color[0] = 30;
+	background_color[1] = 30;
+	background_color[2] = 30;
+	SetBackgroundColor(background_color[0], background_color[1], background_color[2]);
+}
+
+
+
+class Font {
+	int font_size;
+	int font_color[3];
+	int font_color_dx;
+	double line_height;
+	int shadow_color[3];
+	int shadow_color_dx;
+	int shadow_position[2];
+public:
+	Font();
+	void Draw(std::string, int, int);
+};
+
+Font::Font()
+{
+	font_size = 18;
+	font_color[0] = 230;
+	font_color[1] = 230;
+	font_color[2] = 230;
+	line_height = 1.73;
+	shadow_color[0] = 5;
+	shadow_color[1] = 5;
+	shadow_color[2] = 5;
+	shadow_position[0] = 0;
+	shadow_position[1] = 2;
+	font_color_dx = GetColor(font_color[0], font_color[1], font_color[2]);
+	shadow_color_dx = GetColor(shadow_color[0], shadow_color[1], shadow_color[2]);
+	ChangeFont("ＭＳ Ｐゴシック");
+	SetFontSize(font_size);
+	ChangeFontType(DX_FONTTYPE_ANTIALIASING_8X8);
+}
+
+void Font::Draw(std::string text, int x, int y)
+{
+	int len = text.length();
+	char* text_chara = new char[len + 1];
+	memcpy(text_chara, text.c_str(), len + 1);
+
+	DrawString(x, y, text_chara, font_color_dx);
+}
+
+
+
+class Key {
+public:
+	void OnceInput();
+};
+
+void Key::OnceInput()
+{
+	// キーがなにも押されていない状態になるまで進まない
+	while (ProcessMessage() == 0 && CheckHitKeyAll() != 0)
+	{
+		// キーがなにか押されている間はループ
+	}
+
+	// キーがなにか押されている状態になるまで進まない
+	while (ProcessMessage() == 0 && CheckHitKeyAll() == 0)
+	{
+		// キーがなにも押されていない間はループ
+	}
+
+	return;
+}
+
+
+
+class Triangle {
+	int color_dx;
+public:
+	Triangle();
+	void Draw(int, int, int, int, int, int, int, int, int);
+};
+
+Triangle::Triangle()
+{
+}
+
+void Triangle::Draw(int position_1_x, int position_1_y, int position_2_x, int position_2_y, int position_3_x, int position_3_y, int r, int g, int b)
+{
+	color_dx = GetColor(r, g, b);
+	DrawTriangle(position_1_x, position_1_y, position_2_x, position_2_y, position_3_x, position_3_y, color_dx, FALSE);
+}
+
+
+
 class Json {
 	std::string input_file_name;
 public:
@@ -64,66 +166,63 @@ picojson::array Json::GetArray(std::string key)
 
 
 
-class Font {
-	int font_size;
-	int font_color[3];
-	int font_color_dx;
-	double line_height;
-	int shadow_color[3];
-	int shadow_color_dx;
-	int shadow_position[2];
-public:
-	Font();
-	void Draw(std::string, int, int);
-};
-
-Font::Font()
-{
-	font_size = 18;
-	font_color[0] = 230;
-	font_color[1] = 230;
-	font_color[2] = 230;
-	line_height = 1.73;
-	shadow_color[0] = 5;
-	shadow_color[1] = 5;
-	shadow_color[2] = 5;
-	shadow_position[0] = 0;
-	shadow_position[1] = 2;
-	font_color_dx = GetColor(font_color[0], font_color[1], font_color[2]);
-	shadow_color_dx = GetColor(shadow_color[0], shadow_color[1], shadow_color[2]);
-	ChangeFont("ＭＳ Ｐゴシック");
-	SetFontSize(font_size);
-	ChangeFontType(DX_FONTTYPE_ANTIALIASING_8X8);
-}
-
-void Font::Draw(std::string text, int x, int y)
-{
-	int len = text.length();
-	char* text_chara = new char[len + 1];
-	memcpy(text_chara, text.c_str(), len + 1);
-
-	DrawString(x, y, text_chara, font_color_dx);
-}
-
-
-
-class Event {
-public:
-	void Run(int);
-};
-
-void Event::Run(int event_number)
-{
+class Battle {
+	Window window;
 	Font font;
+	Triangle selector;
+public:
+	Battle(Window, Font, Triangle);
+	void Start();
+	void End();
+	void Command(int);
+	void Menu(int);
+};
+
+Battle::Battle(Window window, Font font, Triangle selector)
+{
+	this->window = window;
+	this->font = font;
+	this->selector = selector;
+}
+
+void Battle::Start()
+{
 	Json text_json("text.json");
 
-	if (event_number == 0)
+	picojson::array array = text_json.GetArray("menu");
+
+	std::string menu_text[2];
+	int count = 0;
+	for (picojson::array::iterator i = array.begin(); i != array.end(); i++) {
+		menu_text[count] = i->get<std::string>();
+		count++;
+	}
+
+	// 画面描画
+	SetDrawScreen(DX_SCREEN_BACK);
+	ClearDrawScreen();
+	font.Draw(menu_text[0], 50, 50);
+	font.Draw(menu_text[1], 50, 100);
+	selector.Draw(35, 49, 35, 69, 45, 59, 230, 230, 230);
+	ScreenFlip();
+}
+
+void Battle::End()
+{
+
+}
+
+void Battle::Command(int command_id)
+{
+	Json text_json("text.json");
+
+	if (command_id == 0)
 	{
 		SetDrawScreen(DX_SCREEN_FRONT);
 		std::string string = text_json.GetString("battle");
 		font.Draw(string, 100, 150);
 	}
-	else if (event_number == 1)
+	else if (command_id == 1)
 	{
 		SetDrawScreen(DX_SCREEN_FRONT);
 		std::string string = text_json.GetString("escape");
@@ -131,28 +230,37 @@ void Event::Run(int event_number)
 	}
 }
 
-
-
-class Key {
-public:
-	void OnceInput();
-};
-
-void Key::OnceInput()
+void Battle::Menu(int menu_id)
 {
-	// キーがなにも押されていない状態になるまで進まない
-	while (ProcessMessage() == 0 && CheckHitKeyAll() != 0)
-	{
-		// キーがなにか押されている間はループ
+	Json text_json("text.json");
+
+	picojson::array array = text_json.GetArray("menu");
+
+	std::string menu_text[2];
+	int count = 0;
+	for (picojson::array::iterator i = array.begin(); i != array.end(); i++) {
+		menu_text[count] = i->get<std::string>();
+		count++;
 	}
 
-	// キーがなにか押されている状態になるまで進まない
-	while (ProcessMessage() == 0 && CheckHitKeyAll() == 0)
+	if (menu_id == 0)
 	{
-		// キーがなにも押されていない間はループ
+		SetDrawScreen(DX_SCREEN_BACK);
+		ClearDrawScreen();
+		font.Draw(menu_text[0], 50, 50);
+		font.Draw(menu_text[1], 50, 100);
+		selector.Draw(35, 49, 35, 69, 45, 59, 230, 230, 230);
+		ScreenFlip();
 	}
-
-	return;
+	else if (menu_id == 1)
+	{
+		SetDrawScreen(DX_SCREEN_BACK);
+		ClearDrawScreen();
+		font.Draw(menu_text[0], 50, 50);
+		font.Draw(menu_text[1], 50, 100);
+		selector.Draw(35, 99, 35, 119, 45, 109, 230, 230, 230);
+		ScreenFlip();
+	}
 }
 
 
@@ -168,38 +276,3 @@ class Player {
 class Enemy {
 
 };
-
-
-
-class Window {
-	int background_color[3];
-public:
-	Window();
-};
-
-Window::Window()
-{
-	background_color[0] = 30;
-	background_color[1] = 30;
-	background_color[2] = 30;
-	SetBackgroundColor(background_color[0], background_color[1], background_color[2]);
-}
-
-
-
-class Triangle {
-	int color_dx;
-public:
-	Triangle();
-	void Draw(int, int, int, int, int, int, int, int, int);
-};
-
-Triangle::Triangle()
-{
-}
-
-void Triangle::Draw(int position_1_x, int position_1_y, int position_2_x, int position_2_y, int position_3_x, int position_3_y, int r, int g, int b)
-{
-	color_dx = GetColor(r, g, b);
-	DrawTriangle(position_1_x, position_1_y, position_2_x, position_2_y, position_3_x, position_3_y, color_dx, FALSE);
-}
