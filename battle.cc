@@ -4,89 +4,90 @@
 #include "picojson.h"
 #include "font.h"
 #include "selector.h"
+#include "keyboard.h"
 #include "json.h"
 
-
-Battle::Battle(Font font, Selector selector)
+Battle::Battle()
 {
-	this->font = font;
-	this->selector = selector;
 }
 
 void Battle::Start()
 {
-	Json text_json("text.json");
+	// メニュー表示
+	this->Menu(1);
 
-	picojson::array array = text_json.GetArray("menu");
+	///
+	/// ループ処理
+	///
 
-	std::string menu_text[2];
-	int count = 0;
-	for (picojson::array::iterator i = array.begin(); i != array.end(); i++) {
-		menu_text[count] = i->get<std::string>();
-		count++;
+	Keyboard keyboard;
+
+	// 選択しているメニュー
+	int command_selector = 1;
+
+	// Escキーの入力でループ終了
+	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
+	{
+		// キーボードの入力待ち
+		keyboard.OnceInput();
+
+		if (CheckHitKey(KEY_INPUT_RETURN) == 1)
+		{
+			this->Command(command_selector);
+		}
+		else if (CheckHitKey(KEY_INPUT_UP))
+		{
+			command_selector = 1;
+			this->Menu(command_selector);
+		}
+		else if (CheckHitKey(KEY_INPUT_DOWN))
+		{
+			command_selector = 2;
+			this->Menu(command_selector);
+		}
 	}
 
-	// 画面描画
-	SetDrawScreen(DX_SCREEN_BACK);
-	ClearDrawScreen();
-	font.Draw(menu_text[0], 50, 50);
-	font.Draw(menu_text[1], 50, 100);
-	selector.Draw(35, 49, 35, 69, 45, 59, 230, 230, 230);
-	ScreenFlip();
+	// バトル終了
+	this->End();
 }
 
 void Battle::End()
 {
-
 }
 
-void Battle::Command(int command_id)
+void Battle::Menu(int command_selector)
 {
-	Json text_json("text.json");
+	// メニュー項目取得
+	Json battle_menu("battle__menu.json");
+	std::string menu1 = battle_menu.GetString("1");
+	std::string menu2 = battle_menu.GetString("2");
 
-	if (command_id == 0)
+	// 画面描画
+	Font font;
+	Selector selector;
+	SetDrawScreen(DX_SCREEN_BACK);
+	ClearDrawScreen();
+	font.Draw(menu1, 50, 50);
+	font.Draw(menu2, 50, 100);
+
+	if (command_selector == 1)
 	{
-		SetDrawScreen(DX_SCREEN_FRONT);
-		std::string string = text_json.GetString("battle");
-		font.Draw(string, 100, 150);
-	}
-	else if (command_id == 1)
-	{
-		SetDrawScreen(DX_SCREEN_FRONT);
-		std::string string = text_json.GetString("escape");
-		font.Draw(string, 100, 150);
-	}
-}
-
-void Battle::Menu(int menu_id)
-{
-	Json text_json("text.json");
-
-	picojson::array array = text_json.GetArray("menu");
-
-	std::string menu_text[2];
-	int count = 0;
-	for (picojson::array::iterator i = array.begin(); i != array.end(); i++) {
-		menu_text[count] = i->get<std::string>();
-		count++;
-	}
-
-	if (menu_id == 0)
-	{
-		SetDrawScreen(DX_SCREEN_BACK);
-		ClearDrawScreen();
-		font.Draw(menu_text[0], 50, 50);
-		font.Draw(menu_text[1], 50, 100);
 		selector.Draw(35, 49, 35, 69, 45, 59, 230, 230, 230);
-		ScreenFlip();
 	}
-	else if (menu_id == 1)
+	else if (command_selector == 2)
 	{
-		SetDrawScreen(DX_SCREEN_BACK);
-		ClearDrawScreen();
-		font.Draw(menu_text[0], 50, 50);
-		font.Draw(menu_text[1], 50, 100);
 		selector.Draw(35, 99, 35, 119, 45, 109, 230, 230, 230);
-		ScreenFlip();
 	}
+
+	ScreenFlip();
+}
+
+void Battle::Command(int command_selector)
+{
+	Json battle_result("battle__result.json");
+
+	SetDrawScreen(DX_SCREEN_FRONT);
+	std::string command_selector_string = std::to_string(command_selector);
+	std::string result = battle_result.GetString(command_selector_string);
+	font.Draw(result, 100, 150);
 }

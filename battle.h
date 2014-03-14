@@ -8,7 +8,7 @@ class Battle {
 	Font font;
 	Selector selector;
 public:
-	Battle(Font, Selector);
+	Battle();
 	void Start();
 	void End();
 	void Command(int);
