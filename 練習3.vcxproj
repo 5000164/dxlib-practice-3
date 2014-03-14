@@ -86,13 +86,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="battle.cc" />
+    <ClCompile Include="font.cc" />
+    <ClCompile Include="json.cc" />
+    <ClCompile Include="keyboard.cc" />
+    <ClCompile Include="selector.cc" />
     <ClCompile Include="start.cc" />
-    <ClCompile Include="main_process.cc" />
+    <ClCompile Include="main.cc" />
+    <ClCompile Include="window.cc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="objects.h" />
+    <ClInclude Include="battle.h" />
+    <ClInclude Include="font.h" />
+    <ClInclude Include="json.h" />
+    <ClInclude Include="keyboard.h" />
     <ClInclude Include="dx_lib.h" />
     <ClInclude Include="picojson.h" />
+    <ClInclude Include="selector.h" />
+    <ClInclude Include="window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,7 +1,9 @@
-#include <fstream>
 #include "dx_lib.h"
-#include "objects.h"
-#include "picojson.h"
+#include "window.h"
+#include "font.h"
+#include "keyboard.h"
+#include "selector.h"
+#include "battle.h"
 
 
 
@@ -11,13 +13,13 @@ void MainProcess()
 	// 表示初期化
 	Window window;
 	Font font;
-	Key key;
-	Triangle selector;
+	Keyboard key;
+	Selector selector;
 
 
 
 	// デモバトル開始
-	Battle demo_battle(window, font, selector);
+	Battle demo_battle(font, selector);
 	demo_battle.Start();
 
 

@@ -1,4 +1,5 @@
-#include "DxLib.h"
+#include "dx_lib.h"
+
 void MainProcess();
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
