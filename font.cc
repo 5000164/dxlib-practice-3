@@ -19,9 +19,5 @@ Font::Font()
 
 void Font::Draw(std::string text, int x, int y)
 {
-	int len = text.length();
-	char* text_chara = new char[len + 1];
-	memcpy(text_chara, text.c_str(), len + 1);
-
-	DrawString(x, y, text_chara, font_color_dx);
+	DrawString(x, y, text.c_str(), font_color_dx);
 }
