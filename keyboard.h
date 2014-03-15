@@ -3,7 +3,11 @@
 
 class Keyboard {
 public:
-	void OnceInput();
+	void InputOnce();
+	bool IsPressEsc();
+	bool IsPressReturn();
+	bool IsPressUp();
+	bool IsPressDown();
 };
 
 #endif

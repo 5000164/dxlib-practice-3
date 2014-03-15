@@ -1,7 +1,7 @@
 #include "keyboard.h"
-#include "dx_lib.h"
+#include "dx_lib_wrapper.h"
 
-void Keyboard::OnceInput()
+void Keyboard::InputOnce()
 {
 	// ÉLÅ[Ç™Ç»Ç…Ç‡âüÇ≥ÇÍÇƒÇ¢Ç»Ç¢èÛë‘Ç…Ç»ÇÈÇ‹Ç≈êiÇ‹Ç»Ç¢
 	while (ProcessMessage() == 0 && CheckHitKeyAll() != 0)
@@ -16,4 +16,52 @@ void Keyboard::OnceInput()
 	}
 
 	return;
+}
+
+bool Keyboard::IsPressEsc()
+{
+	bool result = false;
+
+	if (CheckHitKey(KEY_INPUT_ESCAPE) == 1)
+	{
+		result = true;
+	}
+
+	return result;
+}
+
+bool Keyboard::IsPressReturn()
+{
+	bool result = false;
+
+	if (CheckHitKey(KEY_INPUT_RETURN) == 1)
+	{
+		result = true;
+	}
+
+	return result;
+}
+
+bool Keyboard::IsPressUp()
+{
+	bool result = false;
+
+	if (CheckHitKey(KEY_INPUT_UP) == 1)
+	{
+		result = true;
+	}
+
+	return result;
+}
+
+bool Keyboard::IsPressDown()
+{
+	bool result = false;
+
+	if (CheckHitKey(KEY_INPUT_DOWN) == 1)
+	{
+		result = true;
+	}
+
+	return result;
 }
