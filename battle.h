@@ -5,7 +5,6 @@
 
 class Battle {
 public:
-	Battle();
 	void Start(Character &, Character &);
 	void End();
 	void Menu(int);

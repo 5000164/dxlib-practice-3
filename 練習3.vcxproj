@@ -93,7 +93,6 @@
     <ClCompile Include="json.cc" />
     <ClCompile Include="keyboard.cc" />
     <ClCompile Include="rendering.cc" />
-    <ClCompile Include="selector.cc" />
     <ClCompile Include="start.cc" />
     <ClCompile Include="main.cc" />
     <ClCompile Include="window.cc" />
@@ -107,7 +106,6 @@
     <ClInclude Include="dx_lib_wrapper.h" />
     <ClInclude Include="picojson.h" />
     <ClInclude Include="rendering.h" />
-    <ClInclude Include="selector.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

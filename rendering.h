@@ -5,7 +5,6 @@
 
 class Rendering {
 public:
-	Rendering();
 	void BattleMenu(int, std::string, std::string);
 	void BattleMessage(int, int, std::string, std::string, std::string, std::string, std::string);
 };
