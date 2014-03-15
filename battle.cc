@@ -26,15 +26,24 @@ void Battle::Start(Character &c1, Character &c2)
 	// 選択しているメニュー
 	int command_selector = 1;
 
-	// Escキーの入力でループ終了
-	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
+	bool loop_flag = true;
+
+	// Escキーの入力でゲーム終了
+	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0 && loop_flag)
 	{
 		// キーボードの入力待ち
 		keyboard.OnceInput();
 
 		if (CheckHitKey(KEY_INPUT_RETURN) == 1)
 		{
-			this->Command(command_selector, c1, c2);
+			this->Menu(command_selector);
+			int result = this->Command(command_selector, c1, c2);
+
+			if (result == 2)
+			{
+				// バトル終了
+				loop_flag = false;
+			}
 		}
 		else if (CheckHitKey(KEY_INPUT_UP))
 		{
@@ -48,12 +57,14 @@ void Battle::Start(Character &c1, Character &c2)
 		}
 	}
 
-	// バトル終了
 	this->End();
 }
 
 void Battle::End()
 {
+	WaitTimer(1000);
+
+	return;
 }
 
 void Battle::Menu(int command_selector)
@@ -83,8 +94,9 @@ void Battle::Menu(int command_selector)
 	ScreenFlip();
 }
 
-void Battle::Command(int command_selector, Character &c1, Character &c2)
+int Battle::Command(int command_selector, Character &c1, Character &c2)
 {
+	int result;
 	Font font;
 	Selector selector;
 
@@ -92,19 +104,30 @@ void Battle::Command(int command_selector, Character &c1, Character &c2)
 	if (command_selector == 1)
 	{
 		c1.Attack(c2);
+		c2.Attack(c1);
 		selector.Draw(35, 49, 35, 69, 45, 59, 230, 230, 230);
+		result = 1;
 	}
 	// にげる
 	else if (command_selector == 2)
 	{
 		selector.Draw(35, 99, 35, 119, 45, 109, 230, 230, 230);
+		result = 2;
 	}
 
-	Json battle_result("battle__result.json");
-
 	SetDrawScreen(DX_SCREEN_FRONT);
-	std::string command_selector_string = std::to_string(command_selector);
-	std::string result = battle_result.GetString(command_selector_string);
-	font.Draw(result, 100, 150);
-	font.Draw(std::to_string(c2.hit_point), 100, 180);
+
+	Json battle_result("battle__result.json");
+	std::string result_text = battle_result.GetString(std::to_string(result));
+	font.Draw(result_text, 100, 150);
+
+	Json battle_message("battle__message.json");
+	std::string message_text1 = battle_message.GetString("1");
+	std::string message_text2 = battle_message.GetString("2");
+	font.Draw(message_text1, 100, 180);
+	font.Draw(message_text2, 100, 210);
+	font.Draw(std::to_string(c1.hit_point), 250, 180);
+	font.Draw(std::to_string(c2.hit_point), 250, 210);
+
+	return result;
 }
