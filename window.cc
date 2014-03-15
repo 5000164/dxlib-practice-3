@@ -17,7 +17,7 @@ Window::Window()
 	ChangeFontType(DX_FONTTYPE_ANTIALIASING_8X8);
 }
 
-Window::Window(int r = 30, int g = 30, int b = 30)
+Window::Window(int r, int g, int b)
 {
 	SetBackgroundColor(r, g, b);
 
