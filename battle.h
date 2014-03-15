@@ -1,17 +1,14 @@
 #ifndef battle_h
 #define battle_h
 
-#include "font.h"
-#include "selector.h"
+#include "character.h"
 
 class Battle {
-	Font font;
-	Selector selector;
 public:
 	Battle();
-	void Start();
+	void Start(Character &, Character &);
 	void End();
-	void Command(int);
+	void Command(int, Character &, Character &);
 	void Menu(int);
 };
 

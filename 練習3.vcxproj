@@ -87,6 +87,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="battle.cc" />
+    <ClCompile Include="character.cc" />
     <ClCompile Include="font.cc" />
     <ClCompile Include="json.cc" />
     <ClCompile Include="keyboard.cc" />
@@ -97,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="battle.h" />
+    <ClInclude Include="character.h" />
     <ClInclude Include="font.h" />
     <ClInclude Include="json.h" />
     <ClInclude Include="keyboard.h" />
