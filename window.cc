@@ -1,6 +1,6 @@
 #include "window.h"
 #include <string>
-#include "dx_lib.h"
+#include "dx_lib_wrapper.h"
 
 Window::Window()
 {

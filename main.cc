@@ -1,5 +1,6 @@
-#include "dx_lib.h"
+#include "dx_lib_wrapper.h"
 #include "window.h"
+#include "rendering.h"
 #include "font.h"
 #include "keyboard.h"
 #include "selector.h"

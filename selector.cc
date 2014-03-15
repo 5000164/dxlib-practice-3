@@ -1,5 +1,5 @@
 #include "selector.h"
-#include "dx_lib.h"
+#include "dx_lib_wrapper.h"
 
 Selector::Selector()
 {

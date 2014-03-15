@@ -88,9 +88,11 @@
   <ItemGroup>
     <ClCompile Include="battle.cc" />
     <ClCompile Include="character.cc" />
+    <ClCompile Include="dx_lib_wrapper.cc" />
     <ClCompile Include="font.cc" />
     <ClCompile Include="json.cc" />
     <ClCompile Include="keyboard.cc" />
+    <ClCompile Include="rendering.cc" />
     <ClCompile Include="selector.cc" />
     <ClCompile Include="start.cc" />
     <ClCompile Include="main.cc" />
@@ -102,8 +104,9 @@
     <ClInclude Include="font.h" />
     <ClInclude Include="json.h" />
     <ClInclude Include="keyboard.h" />
-    <ClInclude Include="dx_lib.h" />
+    <ClInclude Include="dx_lib_wrapper.h" />
     <ClInclude Include="picojson.h" />
+    <ClInclude Include="rendering.h" />
     <ClInclude Include="selector.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>
