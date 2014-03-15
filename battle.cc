@@ -20,7 +20,7 @@ void Battle::Start(DxLibWrapper &dxlib, Character &c1, Character &c2)
 	while (!(keyboard.IsPressEsc() || end_flag))
 	{
 		// キーボードの入力待ち
-		keyboard.InputOnce();
+		keyboard.InputOnce(dxlib);
 
 		if (keyboard.IsPressReturn())
 		{

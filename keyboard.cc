@@ -1,18 +1,18 @@
 #include "keyboard.h"
 #include "dx_lib_wrapper.h"
 
-void Keyboard::InputOnce()
+void Keyboard::InputOnce(DxLibWrapper &dxlib)
 {
 	// キーがなにも押されていない状態になるまで進まない
-	while (ProcessMessage() == 0 && CheckHitKeyAll() != 0)
+	while (CheckHitKeyAll() != 0)
 	{
-		// キーがなにか押されている間はループ
+		dxlib.SystemWatch();
 	}
 
 	// キーがなにか押されている状態になるまで進まない
-	while (ProcessMessage() == 0 && CheckHitKeyAll() == 0)
+	while (CheckHitKeyAll() == 0)
 	{
-		// キーがなにも押されていない間はループ
+		dxlib.SystemWatch();
 	}
 
 	return;
