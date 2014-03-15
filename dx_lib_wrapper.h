@@ -5,6 +5,9 @@
 
 class DxLibWrapper {
 public:
+	DxLibWrapper();
+	~DxLibWrapper();
+	void SystemInitial();
 	void SystemWatch();
 };
 

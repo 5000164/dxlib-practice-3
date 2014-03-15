@@ -3,9 +3,10 @@
 #include "character.h"
 #include "battle.h"
 
-void MainProcess()
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	// 表示初期化
+	DxLibWrapper dxlib;
 	Window window;
 
 	// キャラクター作成
@@ -14,7 +15,7 @@ void MainProcess()
 
 	// デモバトル開始
 	Battle demo_battle;
-	demo_battle.Start(character1, character2);
+	demo_battle.Start(dxlib, character1, character2);
 
-	return;
+	return 0;
 }

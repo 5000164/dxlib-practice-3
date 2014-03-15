@@ -93,7 +93,6 @@
     <ClCompile Include="json.cc" />
     <ClCompile Include="keyboard.cc" />
     <ClCompile Include="rendering.cc" />
-    <ClCompile Include="start.cc" />
     <ClCompile Include="main.cc" />
     <ClCompile Include="window.cc" />
   </ItemGroup>

@@ -7,7 +7,7 @@
 #include "keyboard.h"
 #include "character.h"
 
-void Battle::Start(Character &c1, Character &c2)
+void Battle::Start(DxLibWrapper &dxlib, Character &c1, Character &c2)
 {
 	// ƒƒjƒ…[•\Ž¦
 	this->Menu(1);
@@ -49,7 +49,6 @@ void Battle::Start(Character &c1, Character &c2)
 			this->Menu(command_selector);
 		}
 
-		DxLibWrapper dxlib;
 		dxlib.SystemWatch();
 	}
 
