@@ -7,10 +7,6 @@
 #include "keyboard.h"
 #include "character.h"
 
-Battle::Battle()
-{
-}
-
 void Battle::Start(Character &c1, Character &c2)
 {
 	// メニュー表示
@@ -41,12 +37,14 @@ void Battle::Start(Character &c1, Character &c2)
 		else if (keyboard.IsPressUp())
 		{
 			command_selector = 1;
+
 			// メニュー表示
 			this->Menu(command_selector);
 		}
 		else if (keyboard.IsPressDown())
 		{
 			command_selector = 2;
+
 			// メニュー表示
 			this->Menu(command_selector);
 		}

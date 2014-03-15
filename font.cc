@@ -20,4 +20,6 @@ Font::Font()
 void Font::Draw(std::string text, int x, int y)
 {
 	DrawString(x, y, text.c_str(), font_color_dx);
+
+	return;
 }
