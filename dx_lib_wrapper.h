@@ -5,8 +5,8 @@
 
 class DxLibWrapper {
 public:
-	DxLibWrapper();
-	~DxLibWrapper();
+  DxLibWrapper();
+  ~DxLibWrapper();
 };
 
 #endif

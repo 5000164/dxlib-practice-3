@@ -5,11 +5,11 @@
 #include "picojson.h"
 
 class Json {
-	std::string input_file_name;
+  std::string input_file_name;
 public:
-	Json(std::string);
-	std::string GetString(std::string);
-	picojson::array GetArray(std::string);
+  Json(std::string);
+  std::string GetString(std::string);
+  picojson::array GetArray(std::string);
 };
 
 #endif

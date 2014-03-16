@@ -3,7 +3,7 @@
 
 class System {
 public:
-	void Watch();
+  void Watch();
 };
 
 #endif

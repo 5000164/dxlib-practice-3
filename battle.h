@@ -4,13 +4,13 @@
 #include "character.h"
 
 class Battle {
-	Character *c1;
-	Character *c2;
+  Character *c1;
+  Character *c2;
 public:
-	std::string battle_message[4];
-	Battle(Character *, Character *);
-	~Battle();
-	void Run();
+  std::string battle_message[4];
+  Battle(Character *, Character *);
+  ~Battle();
+  void Run();
 };
 
 #endif

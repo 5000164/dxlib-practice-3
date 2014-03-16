@@ -4,69 +4,69 @@
 
 void Keyboard::InputOnce()
 {
-	System *system = new System();
+  System *system = new System();
 
-	// キーがなにも押されていない状態になるまで進まない
-	while (CheckHitKeyAll() != 0)
-	{
-		system->Watch();
-	}
+  // キーがなにも押されていない状態になるまで進まない
+  while (CheckHitKeyAll() != 0)
+  {
+    system->Watch();
+  }
 
-	// キーがなにか押されている状態になるまで進まない
-	while (CheckHitKeyAll() == 0)
-	{
-		system->Watch();
-	}
+  // キーがなにか押されている状態になるまで進まない
+  while (CheckHitKeyAll() == 0)
+  {
+    system->Watch();
+  }
 
-	delete system;
+  delete system;
 
-	return;
+  return;
 }
 
 bool Keyboard::IsPressEsc()
 {
-	bool result = false;
+  bool result = false;
 
-	if (CheckHitKey(KEY_INPUT_ESCAPE) == 1)
-	{
-		result = true;
-	}
+  if (CheckHitKey(KEY_INPUT_ESCAPE) == 1)
+  {
+    result = true;
+  }
 
-	return result;
+  return result;
 }
 
 bool Keyboard::IsPressReturn()
 {
-	bool result = false;
+  bool result = false;
 
-	if (CheckHitKey(KEY_INPUT_RETURN) == 1)
-	{
-		result = true;
-	}
+  if (CheckHitKey(KEY_INPUT_RETURN) == 1)
+  {
+    result = true;
+  }
 
-	return result;
+  return result;
 }
 
 bool Keyboard::IsPressUp()
 {
-	bool result = false;
+  bool result = false;
 
-	if (CheckHitKey(KEY_INPUT_UP) == 1)
-	{
-		result = true;
-	}
+  if (CheckHitKey(KEY_INPUT_UP) == 1)
+  {
+    result = true;
+  }
 
-	return result;
+  return result;
 }
 
 bool Keyboard::IsPressDown()
 {
-	bool result = false;
+  bool result = false;
 
-	if (CheckHitKey(KEY_INPUT_DOWN) == 1)
-	{
-		result = true;
-	}
+  if (CheckHitKey(KEY_INPUT_DOWN) == 1)
+  {
+    result = true;
+  }
 
-	return result;
+  return result;
 }

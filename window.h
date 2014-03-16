@@ -4,12 +4,12 @@
 #include <string>
 
 class Window {
-	int background_color[3];
-	int font_size;
+  int background_color[3];
+  int font_size;
 public:
-	Window();
-	Window(int, int, int);
-	Window(int, int, int, std::string, int);
+  Window();
+  Window(int, int, int);
+  Window(int, int, int, std::string, int);
 };
 
 #endif
