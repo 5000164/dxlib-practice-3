@@ -5,7 +5,7 @@
 
 class Keyboard {
 public:
-	void InputOnce(DxLibWrapper &);
+	void InputOnce();
 	bool IsPressEsc();
 	bool IsPressReturn();
 	bool IsPressUp();
