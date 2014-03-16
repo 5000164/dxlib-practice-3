@@ -29,7 +29,7 @@ void Rendering::BattleMenu(int command_selector, std::string menu1, std::string 
 	return;
 }
 
-void Rendering::BattleMessage(int command_selector, int result, std::string result_text, std::string message_text1, std::string message_text2, std::string c1_hit_point, std::string c2_hit_point)
+void Rendering::BattleMessage(int command_selector, std::string message_text1, std::string c1_hit_point, std::string message_text2, std::string c2_hit_point)
 {
 	Font font;
 
@@ -47,11 +47,10 @@ void Rendering::BattleMessage(int command_selector, int result, std::string resu
 	}
 
 	SetDrawScreen(DX_SCREEN_FRONT);
-	font.Draw(result_text, 100, 150);
-	font.Draw(message_text1, 100, 180);
-	font.Draw(message_text2, 100, 210);
-	font.Draw(c1_hit_point, 250, 180);
-	font.Draw(c2_hit_point, 250, 210);
+	font.Draw(message_text1, 100, 150);
+	font.Draw(message_text2, 100, 180);
+	font.Draw(c1_hit_point, 250, 150);
+	font.Draw(c2_hit_point, 250, 180);
 
 	return;
 }
