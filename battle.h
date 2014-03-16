@@ -1,15 +1,16 @@
 #ifndef battle_h
 #define battle_h
 
-#include "dx_lib_wrapper.h"
 #include "character.h"
 
 class Battle {
+	Character *c1;
+	Character *c2;
 public:
-	void Start(DxLibWrapper &, Character &, Character &);
-	void End();
-	void Menu(int);
-	int Command(int, Character &, Character &);
+	std::string battle_message[4];
+	Battle(Character *, Character *);
+	~Battle();
+	void Run();
 };
 
 #endif

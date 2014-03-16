@@ -1,108 +1,76 @@
 #include "battle.h"
 #include <string>
-#include "dx_lib_wrapper.h"
-#include "picojson.h"
+#include "system.h"
 #include "rendering.h"
 #include "json.h"
 #include "keyboard.h"
 #include "character.h"
 
-void Battle::Start(DxLibWrapper &dxlib, Character &c1, Character &c2)
+Battle::Battle(Character *c1, Character *c2)
 {
-	// メニュー表示
-	this->Menu(1);
+	this->c1 = c1;
+	this->c2 = c2;
 
-	Keyboard keyboard;
-	int command_selector = 1;
-	bool end_flag = false;
-
-	// Escキーの入力でゲーム終了
-	while (!(keyboard.IsPressEsc() || end_flag))
-	{
-		// キーボードの入力待ち
-		keyboard.InputOnce(dxlib);
-
-		if (keyboard.IsPressReturn())
-		{
-			// メニュー表示
-			this->Menu(command_selector);
-			int result = this->Command(command_selector, c1, c2);
-
-			if (result == 2)
-			{
-				// バトル終了
-				end_flag = true;
-			}
-		}
-		else if (keyboard.IsPressUp())
-		{
-			command_selector = 1;
-
-			// メニュー表示
-			this->Menu(command_selector);
-		}
-		else if (keyboard.IsPressDown())
-		{
-			command_selector = 2;
-
-			// メニュー表示
-			this->Menu(command_selector);
-		}
-
-		dxlib.SystemWatch();
-	}
-
-	this->End();
-
-	return;
+	// メッセージ読み込み
+	Json battle_message("battle__message.json");
+	this->battle_message[0] = battle_message.GetString("1");
+	this->battle_message[1] = battle_message.GetString("2");
+	this->battle_message[2] = battle_message.GetString("3");
+	this->battle_message[3] = battle_message.GetString("4");
 }
 
-void Battle::End()
+Battle::~Battle()
 {
 	WaitTimer(1000);
-
-	return;
 }
 
-void Battle::Menu(int command_selector)
+void Battle::Run()
 {
-	// メニュー項目取得
-	Json battle_menu("battle__menu.json");
-	std::string menu1 = battle_menu.GetString("1");
-	std::string menu2 = battle_menu.GetString("2");
+	System *system = new System();
+	Keyboard *keyboard = new Keyboard();
+	Rendering *rendering = new Rendering();
+	int action_id = 1;
+	bool continuation_flag = true;
 
-	Rendering rendering;
-	rendering.BattleMenu(command_selector, menu1, menu2);
+	while (continuation_flag)
+	{
+		rendering->BattleMenu(action_id, c1->action_list[0], c1->action_list[1]);
+		rendering->BattleMessage(action_id, battle_message[2], std::to_string(c1->hit_point), battle_message[3], std::to_string(c2->hit_point));
+
+		// キーボードの入力待ち
+		keyboard->InputOnce();
+
+		if (keyboard->IsPressReturn())
+		{
+			c1->Action(action_id, c2);
+
+			rendering->BattleMessage(action_id, battle_message[2], std::to_string(c1->hit_point), battle_message[3], std::to_string(c2->hit_point));
+			
+			if (c1->hit_point <= 0 || c2->hit_point <= 0) {
+				continuation_flag = false;
+			}
+		}
+		else if (keyboard->IsPressUp())
+		{
+			action_id = 1;
+
+			// メニュー表示
+			rendering->BattleMenu(action_id, c1->action_list[0], c1->action_list[1]);
+		}
+		else if (keyboard->IsPressDown())
+		{
+			action_id = 2;
+
+			// メニュー表示
+			rendering->BattleMenu(action_id, c1->action_list[0], c1->action_list[1]);
+		}
+
+		system->Watch();
+	}
+
+	delete rendering;
+	delete keyboard;
+	delete system;
 
 	return;
-}
-
-int Battle::Command(int command_selector, Character &c1, Character &c2)
-{
-	int result;
-
-	// たたかう
-	if (command_selector == 1)
-	{
-		c1.Attack(c2);
-		c2.Attack(c1);
-		result = 1;
-	}
-	// にげる
-	else if (command_selector == 2)
-	{
-		result = 2;
-	}
-
-	Json battle_result("battle__result.json");
-	std::string result_text = battle_result.GetString(std::to_string(result));
-
-	Json battle_message("battle__message.json");
-	std::string message_text1 = battle_message.GetString("1");
-	std::string message_text2 = battle_message.GetString("2");
-
-	Rendering rendering;
-	rendering.BattleMessage(command_selector, result, result_text, message_text1, message_text2, std::to_string(c1.hit_point), std::to_string(c2.hit_point));
-
-	return result;
 }
