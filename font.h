@@ -1,4 +1,4 @@
-#ifndef font_h
+﻿#ifndef font_h
 #define font_h
 
 #include <string>

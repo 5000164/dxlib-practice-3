@@ -1,4 +1,4 @@
-#include "font.h"
+﻿#include "font.h"
 #include <string>
 #include "dx_lib_wrapper.h"
 

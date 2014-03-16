@@ -1,19 +1,19 @@
-#include "dx_lib_wrapper.h"
+ï»¿#include "dx_lib_wrapper.h"
 #include "window.h"
 #include "character.h"
 #include "battle.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-  // •\Ž¦‰Šú‰»
+  // è¡¨ç¤ºåˆæœŸåŒ–
   DxLibWrapper *dxlib = new DxLibWrapper();
   Window *window = new Window();
 
-  // ƒLƒƒƒ‰ƒNƒ^[ì¬
+  // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ä½œæˆ
   Character *character1 = new Character(10, 2);
   Character *character2 = new Character(5, 3);
 
-  // ƒfƒ‚ƒoƒgƒ‹ŠJŽn
+  // ãƒ‡ãƒ¢ãƒãƒˆãƒ«é–‹å§‹
   Battle *demo_battle = new Battle(character1, character2);
   demo_battle->Run();
   delete demo_battle;

@@ -1,4 +1,4 @@
-#ifndef window_h
+﻿#ifndef window_h
 #define window_h
 
 #include <string>

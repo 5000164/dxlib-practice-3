@@ -1,4 +1,4 @@
-#include "keyboard.h"
+ï»¿#include "keyboard.h"
 #include "dx_lib_wrapper.h"
 #include "system.h"
 
@@ -6,13 +6,13 @@ void Keyboard::InputOnce()
 {
   System *system = new System();
 
-  // ƒL[‚ª‚È‚É‚à‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢ó‘Ô‚É‚È‚é‚Ü‚Åi‚Ü‚È‚¢
+  // ã‚­ãƒ¼ãŒãªã«ã‚‚æŠ¼ã•ã‚Œã¦ã„ãªã„çŠ¶æ…‹ã«ãªã‚‹ã¾ã§é€²ã¾ãªã„
   while (CheckHitKeyAll() != 0)
   {
     system->Watch();
   }
 
-  // ƒL[‚ª‚È‚É‚©‰Ÿ‚³‚ê‚Ä‚¢‚éó‘Ô‚É‚È‚é‚Ü‚Åi‚Ü‚È‚¢
+  // ã‚­ãƒ¼ãŒãªã«ã‹æŠ¼ã•ã‚Œã¦ã„ã‚‹çŠ¶æ…‹ã«ãªã‚‹ã¾ã§é€²ã¾ãªã„
   while (CheckHitKeyAll() == 0)
   {
     system->Watch();

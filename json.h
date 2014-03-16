@@ -1,4 +1,4 @@
-#ifndef json_h
+﻿#ifndef json_h
 #define json_h
 
 #include <string>

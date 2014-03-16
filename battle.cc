@@ -1,4 +1,4 @@
-#include "battle.h"
+ï»¿#include "battle.h"
 #include <string>
 #include "system.h"
 #include "rendering.h"
@@ -11,7 +11,7 @@ Battle::Battle(Character *c1, Character *c2)
   this->c1 = c1;
   this->c2 = c2;
 
-  // ƒƒbƒZ[ƒW“Ç‚Ýž‚Ý
+  // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸èª­ã¿è¾¼ã¿
   Json battle_message("battle__message.json");
   this->battle_message[0] = battle_message.GetString("1");
   this->battle_message[1] = battle_message.GetString("2");
@@ -37,7 +37,7 @@ void Battle::Run()
     rendering->BattleMenu(action_id, c1->action_list[0], c1->action_list[1]);
     rendering->BattleMessage(action_id, battle_message[2], std::to_string(c1->hit_point), battle_message[3], std::to_string(c2->hit_point));
 
-    // ƒL[ƒ{[ƒh‚Ì“ü—Í‘Ò‚¿
+    // ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›å¾…ã¡
     keyboard->InputOnce();
 
     if (keyboard->IsPressReturn())
@@ -54,14 +54,14 @@ void Battle::Run()
     {
       action_id = 1;
 
-      // ƒƒjƒ…[•\Ž¦
+      // ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
       rendering->BattleMenu(action_id, c1->action_list[0], c1->action_list[1]);
     }
     else if (keyboard->IsPressDown())
     {
       action_id = 2;
 
-      // ƒƒjƒ…[•\Ž¦
+      // ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
       rendering->BattleMenu(action_id, c1->action_list[0], c1->action_list[1]);
     }
 

@@ -1,17 +1,17 @@
-#include "dx_lib_wrapper.h"
+ï»¿#include "dx_lib_wrapper.h"
 
 DxLibWrapper::DxLibWrapper()
 {
-  // ƒEƒBƒ“ƒhƒE‚ÅÀs
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§å®Ÿè¡Œ
   ChangeWindowMode(TRUE);
 
-  // 1024x768pxA32bit‚ÅÀs
+  // 1024x768pxã€32bitã§å®Ÿè¡Œ
   SetGraphMode(1024, 768, 32);
 
-  // ˆÙíˆ—‚Å‹­§I—¹
+  // ç•°å¸¸å‡¦ç†ã§å¼·åˆ¶çµ‚äº†
   if (DxLib_Init() == -1)
   {
-    // DXƒ‰ƒCƒuƒ‰ƒŠg—pI—¹ˆ—
+    // DXãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½¿ç”¨çµ‚äº†å‡¦ç†
     DxLib_End();
 
     exit(1);
@@ -20,6 +20,6 @@ DxLibWrapper::DxLibWrapper()
 
 DxLibWrapper::~DxLibWrapper()
 {
-  // DXƒ‰ƒCƒuƒ‰ƒŠg—pI—¹ˆ—
+  // DXãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½¿ç”¨çµ‚äº†å‡¦ç†
   DxLib_End();
 }

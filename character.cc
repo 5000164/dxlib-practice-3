@@ -1,4 +1,4 @@
-#include "character.h"
+ï»¿#include "character.h"
 #include <string>
 #include "json.h"
 
@@ -7,7 +7,7 @@ Character::Character(int hit_point, int attack_point)
   this->hit_point = hit_point;
   this->attack_point = attack_point;
 
-  // s“®‰Â”\ƒŠƒXƒg“Ç‚Ýž‚Ý
+  // è¡Œå‹•å¯èƒ½ãƒªã‚¹ãƒˆèª­ã¿è¾¼ã¿
   Json battle_menu("character__action_list.json");
   this->action_list[0] = battle_menu.GetString("1");
   this->action_list[1] = battle_menu.GetString("2");

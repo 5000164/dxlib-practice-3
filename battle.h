@@ -1,4 +1,4 @@
-#ifndef battle_h
+﻿#ifndef battle_h
 #define battle_h
 
 #include "character.h"

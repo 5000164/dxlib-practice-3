@@ -1,12 +1,12 @@
-#include "system.h"
+ï»¿#include "system.h"
 #include "dx_lib_wrapper.h"
 
 void System::Watch()
 {
-  // ˆÙíˆ—‚Å‹­§I—¹
+  // ç•°å¸¸å‡¦ç†ã§å¼·åˆ¶çµ‚äº†
   if (ProcessMessage() == -1)
   {
-    // DXƒ‰ƒCƒuƒ‰ƒŠg—pI—¹ˆ—
+    // DXãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½¿ç”¨çµ‚äº†å‡¦ç†
     DxLib_End();
 
     exit(1);
