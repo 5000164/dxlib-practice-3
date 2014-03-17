@@ -5,13 +5,16 @@
 #include "./json.h"
 
 class Character {
-  int attack_point;
 public:
-  int hit_point;
-  std::string action_list[2];
   Character(int, int);
   void Action(int, Character *);
   void Attack(Character *);
+
+  int hit_point;
+  std::string action_list[2];
+
+private:
+  int attack_point;
 };
 
 #endif
