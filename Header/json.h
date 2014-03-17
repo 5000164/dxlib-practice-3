@@ -6,13 +6,13 @@
 #include "../Library/picojson.h"
 
 class Json {
- public:
+public:
   Json(std::string);
   void Init();
 
   std::string GetString(std::string);
 
- private:
+private:
   std::string input_file;
   picojson::value v;
   std::string err;
