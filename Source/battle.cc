@@ -51,8 +51,8 @@ void Battle::Run()
       }
       else
       {
-        c1->Action(action_id, c2);
         c2->Action(1, c1);
+        c1->Action(action_id, c2);
       }
 
       rendering->BattleMessage(action_id, message3, std::to_string(c1->hit_point), message4, std::to_string(c2->hit_point));
