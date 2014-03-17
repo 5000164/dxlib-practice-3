@@ -5,12 +5,17 @@
 #include "../Library/DxLib/DxLib.h"
 
 class Window {
-  int background_color[3];
-  int font_size;
 public:
   Window();
-  Window(int, int, int);
-  Window(int, int, int, std::string, int);
+  ~Window();
+  void Init();
+
+private:
+  int r;
+  int g;
+  int b;
+  int font_size;
+  std::string font_family;
 };
 
 #endif
