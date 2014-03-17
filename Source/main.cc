@@ -10,9 +10,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
   window->Init();
 
   // キャラクター作成
-  Character *character1 = new Character(10, 2, 5);
+  Character *character1 = new Character(10, 3, 10);
   character1->Init();
-  Character *character2 = new Character(5, 3, 8);
+  Character *character2 = new Character(8, 4, 8);
   character2->Init();
 
   // デモバトル開始
