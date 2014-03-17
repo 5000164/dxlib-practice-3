@@ -14,12 +14,15 @@ Battle::~Battle()
 void Battle::Init()
 {
   // メッセージ読み込み
-  Json *battle_message = new Json("./Data/battle__message.json");
-  battle_message->Init();
-  this->battle_message[0] = battle_message->GetString("1");
-  this->battle_message[1] = battle_message->GetString("2");
-  this->battle_message[2] = battle_message->GetString("3");
-  this->battle_message[3] = battle_message->GetString("4");
+  Json *message = new Json("./Data/battle__message.json");
+  message->Init();
+  this->message1 = message->GetString("1");
+  this->message2 = message->GetString("2");
+  this->message3 = message->GetString("3");
+  this->message4 = message->GetString("4");
+  delete message;
+
+  return;
 }
 
 void Battle::Run()
@@ -32,17 +35,27 @@ void Battle::Run()
 
   while (continuation_flag)
   {
-    rendering->BattleMenu(action_id, c1->action_list[0], c1->action_list[1]);
-    rendering->BattleMessage(action_id, battle_message[2], std::to_string(c1->hit_point), battle_message[3], std::to_string(c2->hit_point));
+    rendering->BattleMenu(action_id, c1->action_list1, c1->action_list2);
+    rendering->BattleMessage(action_id, message3, std::to_string(c1->hit_point), message4, std::to_string(c2->hit_point));
 
     // キーボードの入力待ち
     keyboard->InputOnce();
 
     if (keyboard->IsPressReturn())
     {
-      c1->Action(action_id, c2);
+      // 素早さの早いキャラクターから行動
+      if (c1->IsFasterThan(c2))
+      {
+        c1->Action(action_id, c2);
+        c2->Action(1, c1);
+      }
+      else
+      {
+        c1->Action(action_id, c2);
+        c2->Action(1, c1);
+      }
 
-      rendering->BattleMessage(action_id, battle_message[2], std::to_string(c1->hit_point), battle_message[3], std::to_string(c2->hit_point));
+      rendering->BattleMessage(action_id, message3, std::to_string(c1->hit_point), message4, std::to_string(c2->hit_point));
 
       if (c1->hit_point <= 0 || c2->hit_point <= 0) {
         continuation_flag = false;
@@ -53,14 +66,14 @@ void Battle::Run()
       action_id = 1;
 
       // メニュー表示
-      rendering->BattleMenu(action_id, c1->action_list[0], c1->action_list[1]);
+      rendering->BattleMenu(action_id, c1->action_list1, c1->action_list2);
     }
     else if (keyboard->IsPressDown())
     {
       action_id = 2;
 
       // メニュー表示
-      rendering->BattleMenu(action_id, c1->action_list[0], c1->action_list[1]);
+      rendering->BattleMenu(action_id, c1->action_list1, c1->action_list2);
     }
 
     system->Watch();

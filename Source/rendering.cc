@@ -2,7 +2,6 @@
 
 void Rendering::BattleMenu(int command_selector, std::string menu1, std::string menu2)
 {
-  // ‰æ–Ê•`‰æ
   Font font;
 
   SetDrawScreen(DX_SCREEN_BACK);

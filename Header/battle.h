@@ -15,7 +15,10 @@ public:
   void Init();
   void Run();
 
-  std::string battle_message[4];
+  std::string message1;
+  std::string message2;
+  std::string message3;
+  std::string message4;
 
 private:
   Character *c1;

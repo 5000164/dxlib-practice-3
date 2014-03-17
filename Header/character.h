@@ -6,15 +6,20 @@
 
 class Character {
 public:
-  Character(int, int);
+  Character(int, int, int);
+  void Init();
+  bool IsFasterThan(Character *);
   void Action(int, Character *);
-  void Attack(Character *);
 
   int hit_point;
-  std::string action_list[2];
+  std::string action_list1;
+  std::string action_list2;
 
 private:
+  void Attack(Character *);
+
   int attack_point;
+  int speed;
 };
 
 #endif
