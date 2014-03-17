@@ -1,6 +1,4 @@
-﻿#include "font.h"
-#include <string>
-#include "dx_lib_wrapper.h"
+#include "../Header/font.h"
 
 Font::Font()
 {

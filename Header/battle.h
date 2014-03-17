@@ -1,7 +1,12 @@
-﻿#ifndef battle_h
+#ifndef battle_h
 #define battle_h
 
-#include "character.h"
+#include <string>
+#include "./system.h"
+#include "./rendering.h"
+#include "./json.h"
+#include "./keyboard.h"
+#include "./character.h"
 
 class Battle {
   Character *c1;

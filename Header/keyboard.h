@@ -1,7 +1,8 @@
-﻿#ifndef keyboard_h
+#ifndef keyboard_h
 #define keyboard_h
 
-#include "dx_lib_wrapper.h"
+#include "../Library/DxLib/DxLib.h"
+#include "./system.h"
 
 class Keyboard {
 public:

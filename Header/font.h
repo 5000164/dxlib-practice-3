@@ -1,7 +1,8 @@
-﻿#ifndef font_h
+#ifndef font_h
 #define font_h
 
 #include <string>
+#include "../Library/DxLib/DxLib.h"
 
 class Font {
   int font_color[3];

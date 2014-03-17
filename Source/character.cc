@@ -1,14 +1,12 @@
-ï»¿#include "character.h"
-#include <string>
-#include "json.h"
+#include "../Header/character.h"
 
 Character::Character(int hit_point, int attack_point)
 {
   this->hit_point = hit_point;
   this->attack_point = attack_point;
 
-  // è¡Œå‹•å¯èƒ½ãƒªã‚¹ãƒˆèª­ã¿è¾¼ã¿
-  Json battle_menu("character__action_list.json");
+  // s“®‰Â”\ƒŠƒXƒg“Ç‚Ýž‚Ý
+  Json battle_menu("./Data/character__action_list.json");
   battle_menu.Init();
   this->action_list[0] = battle_menu.GetString("1");
   this->action_list[1] = battle_menu.GetString("2");

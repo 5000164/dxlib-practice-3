@@ -1,7 +1,4 @@
-﻿#include "json.h"
-#include <string>
-#include <fstream>
-#include "picojson.h"
+#include "../Header/json.h"
 
 Json::Json(std::string input_file)
 {

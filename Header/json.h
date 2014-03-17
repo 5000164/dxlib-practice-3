@@ -1,8 +1,9 @@
-﻿#ifndef json_h
+#ifndef json_h
 #define json_h
 
 #include <string>
-#include "picojson.h"
+#include <fstream>
+#include "../Library/picojson.h"
 
 class Json {
  public:

@@ -1,7 +1,8 @@
-﻿#ifndef character_h
+#ifndef character_h
 #define character_h
 
 #include <string>
+#include "./json.h"
 
 class Character {
   int attack_point;

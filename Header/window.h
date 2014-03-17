@@ -1,7 +1,8 @@
-﻿#ifndef window_h
+#ifndef window_h
 #define window_h
 
 #include <string>
+#include "../Library/DxLib/DxLib.h"
 
 class Window {
   int background_color[3];

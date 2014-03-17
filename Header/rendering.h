@@ -1,7 +1,9 @@
-﻿#ifndef rendering_h
+#ifndef rendering_h
 #define rendering_h
 
 #include <string>
+#include "../Library/DxLib/DxLib.h"
+#include "./font.h"
 
 class Rendering {
 public:

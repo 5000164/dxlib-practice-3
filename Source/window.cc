@@ -1,17 +1,15 @@
-ï»¿#include "window.h"
-#include <string>
-#include "dx_lib_wrapper.h"
+#include "../Header/window.h"
 
 Window::Window()
 {
-  // èƒŒæ™¯è‰²è¨­å®š
+  // ”wŒiFİ’è
   int r = 30;
   int g = 30;
   int b = 30;
   SetBackgroundColor(r, g, b);
 
-  // ãƒ•ã‚©ãƒ³ãƒˆå¤‰æ›´ã¯å‡¦ç†ãŒé‡ã„ã®ã§ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ¯ã«å¤‰æ›´
-  std::string font_family = "ï¼­ï¼³ ï¼°ã‚´ã‚·ãƒƒã‚¯";
+  // ƒtƒHƒ“ƒg•ÏX‚Íˆ—‚ªd‚¢‚Ì‚ÅƒEƒBƒ“ƒhƒE–ˆ‚É•ÏX
+  std::string font_family = "‚l‚r ‚oƒSƒVƒbƒN";
   int font_size = 18;
   ChangeFont(font_family.c_str());
   SetFontSize(font_size);

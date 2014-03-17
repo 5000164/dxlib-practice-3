@@ -1,11 +1,8 @@
-ï»¿#include "rendering.h"
-#include <string>
-#include "dx_lib_wrapper.h"
-#include "font.h"
+#include "../Header/rendering.h"
 
 void Rendering::BattleMenu(int command_selector, std::string menu1, std::string menu2)
 {
-  // ç”»é¢æç”»
+  // ‰æ–Ê•`‰æ
   Font font;
 
   SetDrawScreen(DX_SCREEN_BACK);
@@ -33,13 +30,13 @@ void Rendering::BattleMessage(int command_selector, std::string message_text1, s
 {
   Font font;
 
-  // ãŸãŸã‹ã†
+  // ‚½‚½‚©‚¤
   if (command_selector == 1)
   {
     int color_dx = GetColor(230, 230, 230);
     DrawTriangle(35, 49, 35, 69, 45, 59, color_dx, FALSE);
   }
-  // ã«ã’ã‚‹
+  // ‚É‚°‚é
   else if (command_selector == 2)
   {
     int color_dx = GetColor(230, 230, 230);
