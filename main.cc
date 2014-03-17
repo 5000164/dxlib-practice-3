@@ -15,6 +15,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
   // デモバトル開始
   Battle *demo_battle = new Battle(character1, character2);
+  demo_battle->Init();
   demo_battle->Run();
   delete demo_battle;
 

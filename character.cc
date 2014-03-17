@@ -9,6 +9,7 @@ Character::Character(int hit_point, int attack_point)
 
   // 行動可能リスト読み込み
   Json battle_menu("character__action_list.json");
+  battle_menu.Init();
   this->action_list[0] = battle_menu.GetString("1");
   this->action_list[1] = battle_menu.GetString("2");
 }

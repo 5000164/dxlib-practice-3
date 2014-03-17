@@ -10,18 +10,22 @@ Battle::Battle(Character *c1, Character *c2)
 {
   this->c1 = c1;
   this->c2 = c2;
-
-  // メッセージ読み込み
-  Json battle_message("battle__message.json");
-  this->battle_message[0] = battle_message.GetString("1");
-  this->battle_message[1] = battle_message.GetString("2");
-  this->battle_message[2] = battle_message.GetString("3");
-  this->battle_message[3] = battle_message.GetString("4");
 }
 
 Battle::~Battle()
 {
   WaitTimer(1000);
+}
+
+void Battle::Init()
+{
+  // メッセージ読み込み
+  Json *battle_message = new Json("battle__message.json");
+  battle_message->Init();
+  this->battle_message[0] = battle_message->GetString("1");
+  this->battle_message[1] = battle_message->GetString("2");
+  this->battle_message[2] = battle_message->GetString("3");
+  this->battle_message[3] = battle_message->GetString("4");
 }
 
 void Battle::Run()

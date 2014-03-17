@@ -10,6 +10,7 @@ public:
   std::string battle_message[4];
   Battle(Character *, Character *);
   ~Battle();
+  void Init();
   void Run();
 };
 
