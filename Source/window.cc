@@ -3,11 +3,11 @@
 Window::Window()
 {
   // ”wŒiFİ’è
-  int r = 30;
-  int g = 30;
-  int b = 30;
+  r = 30;
+  g = 30;
+  b = 30;
 
-  int font_size = 18;
+  font_size = 18;
   font_family = "‚l‚r ‚oƒSƒVƒbƒN";
 }
 
