@@ -1,18 +1,15 @@
 #include "../Header/keyboard.h"
 
-void Keyboard::InputOnce()
-{
+void Keyboard::InputOnce() {
   System *system = new System();
 
   // キーがなにも押されていない状態になるまで進まない
-  while (CheckHitKeyAll() != 0)
-  {
+  while (CheckHitKeyAll() != 0) {
     system->Watch();
   }
 
   // キーがなにか押されている状態になるまで進まない
-  while (CheckHitKeyAll() == 0)
-  {
+  while (CheckHitKeyAll() == 0) {
     system->Watch();
   }
 
@@ -21,48 +18,40 @@ void Keyboard::InputOnce()
   return;
 }
 
-bool Keyboard::IsPressEsc()
-{
+bool Keyboard::IsPressEsc() {
   bool result = false;
 
-  if (CheckHitKey(KEY_INPUT_ESCAPE) == 1)
-  {
+  if (CheckHitKey(KEY_INPUT_ESCAPE) == 1) {
     result = true;
   }
 
   return result;
 }
 
-bool Keyboard::IsPressReturn()
-{
+bool Keyboard::IsPressReturn() {
   bool result = false;
 
-  if (CheckHitKey(KEY_INPUT_RETURN) == 1)
-  {
+  if (CheckHitKey(KEY_INPUT_RETURN) == 1) {
     result = true;
   }
 
   return result;
 }
 
-bool Keyboard::IsPressUp()
-{
+bool Keyboard::IsPressUp() {
   bool result = false;
 
-  if (CheckHitKey(KEY_INPUT_UP) == 1)
-  {
+  if (CheckHitKey(KEY_INPUT_UP) == 1) {
     result = true;
   }
 
   return result;
 }
 
-bool Keyboard::IsPressDown()
-{
+bool Keyboard::IsPressDown() {
   bool result = false;
 
-  if (CheckHitKey(KEY_INPUT_DOWN) == 1)
-  {
+  if (CheckHitKey(KEY_INPUT_DOWN) == 1) {
     result = true;
   }
 

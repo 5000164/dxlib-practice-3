@@ -1,12 +1,10 @@
 #include "../Header/json.h"
 
-Json::Json(std::string input_file)
-{
+Json::Json(std::string input_file) {
   this->input_file = input_file;
 }
 
-void Json::Init()
-{
+void Json::Init() {
   std::ifstream file;
   file.open(input_file.c_str());
 
@@ -17,8 +15,7 @@ void Json::Init()
   picojson::parse(v, json_str.begin(), json_str.end(), &err);
 }
 
-std::string Json::GetString(std::string key)
-{
+std::string Json::GetString(std::string key) {
   picojson::object &o = v.get<picojson::object>();
   return o[key].get<std::string>();
 }

@@ -1,7 +1,6 @@
 #include "../Header/window.h"
 
-Window::Window()
-{
+Window::Window() {
   // 背景色設定
   r = 30;
   g = 30;
@@ -11,14 +10,12 @@ Window::Window()
   font_family = "ＭＳ Ｐゴシック";
 }
 
-Window::~Window()
-{
+Window::~Window() {
   // DXライブラリ使用終了処理
   DxLib_End();
 }
 
-void Window::Init()
-{
+void Window::Init() {
   // ウィンドウで実行
   ChangeWindowMode(TRUE);
 
@@ -26,8 +23,7 @@ void Window::Init()
   SetGraphMode(1024, 768, 32);
 
   // 異常処理で強制終了
-  if (DxLib_Init() == -1)
-  {
+  if (DxLib_Init() == -1) {
     // DXライブラリ使用終了処理
     DxLib_End();
 

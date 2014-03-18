@@ -1,14 +1,12 @@
 #include "../Header/character.h"
 
-Character::Character(int hit_point, int attack_point, int speed)
-{
+Character::Character(int hit_point, int attack_point, int speed) {
   this->hit_point = hit_point;
   this->attack_point = attack_point;
   this->speed = speed;
 }
 
-void Character::Init()
-{
+void Character::Init() {
   // 行動可能リスト読み込み
   Json *action_list = new Json("./Data/character__action_list.json");
   action_list->Init();
@@ -19,42 +17,30 @@ void Character::Init()
   return;
 }
 
-bool Character::IsFasterThan(Character *target)
-{
-  if (speed > target->speed)
-  {
+bool Character::IsFasterThan(Character *target) {
+  if (speed > target->speed) {
     return true;
-  }
-  else
-  {
+  } else {
     return false;
   }
 }
 
-void Character::Action(int action_id, Character *target)
-{
+void Character::Action(int action_id, Character *target) {
   // HPがない時は行動できない
-  if (hit_point <= 0)
-  {
+  if (hit_point <= 0) {
     return;
   }
 
-  // 攻撃
-  if (action_id = 1)
-  {
+  if (action_id = 1) {
     this->Attack(target);
-  }
-  // 逃げる
-  else if (action_id = 2)
-  {
+  } else if (action_id = 2) {
 
   }
 
   return;
 }
 
-void Character::Attack(Character *target)
-{
+void Character::Attack(Character *target) {
   target->hit_point = target->hit_point - this->attack_point;
 
   return;

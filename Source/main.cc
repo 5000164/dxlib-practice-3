@@ -3,8 +3,7 @@
 #include "../Header/character.h"
 #include "../Header/battle.h"
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
-{
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
   // •\Ž¦‰Šú‰»
   Window *window = new Window();
   window->Init();
