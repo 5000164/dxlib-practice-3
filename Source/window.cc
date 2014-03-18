@@ -1,4 +1,5 @@
 #include "../Header/window.h"
+#include "../Library/DxLib/DxLib.h"
 
 namespace window {
 

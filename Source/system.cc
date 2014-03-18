@@ -1,4 +1,5 @@
 #include "../Header/system.h"
+#include "../Library/DxLib/DxLib.h"
 
 namespace dx_system {
 

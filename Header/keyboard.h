@@ -1,9 +1,6 @@
 #ifndef keyboard_h
 #define keyboard_h
 
-#include "../Library/DxLib/DxLib.h"
-#include "./system.h"
-
 namespace keyboard {
 
 class Keyboard {

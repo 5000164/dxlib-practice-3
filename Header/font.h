@@ -2,7 +2,6 @@
 #define font_h
 
 #include <string>
-#include "../Library/DxLib/DxLib.h"
 
 namespace font {
 

@@ -1,4 +1,6 @@
 #include "../Header/keyboard.h"
+#include "../Library/DxLib/DxLib.h"
+#include "../Header/system.h"
 
 namespace keyboard {
 

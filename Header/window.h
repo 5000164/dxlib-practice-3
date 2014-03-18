@@ -2,7 +2,6 @@
 #define window_h
 
 #include <string>
-#include "../Library/DxLib/DxLib.h"
 
 namespace window {
 

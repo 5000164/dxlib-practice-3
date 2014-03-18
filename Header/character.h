@@ -2,7 +2,6 @@
 #define character_h
 
 #include <string>
-#include "./json.h"
 
 namespace character {
 

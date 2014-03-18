@@ -1,4 +1,5 @@
 #include "../Header/font.h"
+#include "../Library/DxLib/DxLib.h"
 
 namespace font {
 

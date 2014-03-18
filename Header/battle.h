@@ -2,9 +2,6 @@
 #define battle_h
 
 #include <string>
-#include "./system.h"
-#include "./json.h"
-#include "./keyboard.h"
 #include "./character.h"
 
 namespace battle {

@@ -1,4 +1,5 @@
 #include "../Header/character.h"
+#include "../Header/json.h"
 
 namespace character {
 

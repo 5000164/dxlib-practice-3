@@ -2,7 +2,6 @@
 #define rendering_h
 
 #include <string>
-#include "../Library/DxLib/DxLib.h"
 #include "./battle.h"
 
 namespace rendering {

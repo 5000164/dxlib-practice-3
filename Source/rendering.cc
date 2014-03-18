@@ -1,4 +1,5 @@
 #include "../Header/rendering.h"
+#include "../Library/DxLib/DxLib.h"
 #include "../Header/font.h"
 
 namespace rendering {

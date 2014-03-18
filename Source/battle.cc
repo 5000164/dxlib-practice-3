@@ -1,4 +1,8 @@
 #include "../Header/battle.h"
+#include "../Library/DxLib/DxLib.h"
+#include "../Header/system.h"
+#include "../Header/json.h"
+#include "../Header/keyboard.h"
 #include "../Header/rendering.h"
 
 namespace battle {
