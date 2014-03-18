@@ -3,7 +3,6 @@
 
 #include <string>
 #include "./system.h"
-#include "./rendering.h"
 #include "./json.h"
 #include "./keyboard.h"
 #include "./character.h"
@@ -23,10 +22,11 @@ public:
   std::string message2;
   std::string message3;
   std::string message4;
-
-private:
   character::Character *c1;
   character::Character *c2;
+  int action_id;
+  int action_result;
+  bool continuation_flag;
 };
 
 }

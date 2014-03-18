@@ -1,10 +1,14 @@
 #include "../Header/battle.h"
+#include "../Header/rendering.h"
 
 namespace battle {
 
 Battle::Battle(character::Character *c1, character::Character *c2) {
   this->c1 = c1;
   this->c2 = c2;
+  this->action_id = 1;
+  this->action_result = 0;
+  this->continuation_flag = true;
 }
 
 Battle::~Battle() {
@@ -26,9 +30,6 @@ void Battle::Init() {
 
 void Battle::Run() {
   dx_system::System *system = new dx_system::System();
-  int action_id = 1;
-  int action_result = 0;
-  bool continuation_flag = true;
 
   while (continuation_flag) {
     system->Watch();
@@ -78,15 +79,11 @@ int Battle::SelectPhase(int action_id) {
       continuation_flag = false;
     } else if (keyboard->IsPressUp()) {
       action_id = 1;
-
-      // メニュー表示
-      rendering->BattleMenu(action_id, c1->action_list1, c1->action_list2);
     } else if (keyboard->IsPressDown()) {
       action_id = 2;
-
-      // メニュー表示
-      rendering->BattleMenu(action_id, c1->action_list1, c1->action_list2);
     }
+
+    rendering->Battle(this);
   }
 
   delete rendering;
@@ -113,8 +110,6 @@ int Battle::ActionPhase(int action_id) {
         c2->Action(1, c1);
         c1->Action(action_id, c2);
       }
-
-      rendering->BattleMessage(action_id, message3, std::to_string(c1->hit_point), message4, std::to_string(c2->hit_point));
 
       if (c1->hit_point <= 0) {
         action_result = 1;
