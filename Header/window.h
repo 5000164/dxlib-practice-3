@@ -4,6 +4,8 @@
 #include <string>
 #include "../Library/DxLib/DxLib.h"
 
+namespace window {
+
 class Window {
 public:
   Window();
@@ -17,5 +19,7 @@ private:
   int font_size;
   std::string font_family;
 };
+
+}
 
 #endif

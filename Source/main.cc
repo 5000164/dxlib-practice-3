@@ -5,17 +5,17 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
   // 表示初期化
-  Window *window = new Window();
+  window:: Window *window = new window::Window();
   window->Init();
 
   // キャラクター作成
-  Character *character1 = new Character(10, 3, 10);
+  character::Character *character1 = new character::Character(10, 3, 10);
   character1->Init();
-  Character *character2 = new Character(8, 4, 8);
+  character::Character *character2 = new character::Character(8, 4, 8);
   character2->Init();
 
   // デモバトル開始
-  Battle *demo_battle = new Battle(character1, character2);
+  battle::Battle *demo_battle = new battle::Battle(character1, character2);
   demo_battle->Init();
   demo_battle->Run();
   delete demo_battle;

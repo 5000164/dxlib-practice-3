@@ -1,5 +1,7 @@
 #include "../Header/system.h"
 
+namespace dx_system {
+
 void System::Watch() {
   // ˆÙíˆ—‚Å‹­§I—¹
   if (ProcessMessage() == -1) {
@@ -10,4 +12,6 @@ void System::Watch() {
   }
 
   return;
+}
+
 }

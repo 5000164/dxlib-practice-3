@@ -5,6 +5,8 @@
 #include <fstream>
 #include "../Library/picojson.h"
 
+namespace json {
+
 class Json {
 public:
   Json(std::string);
@@ -17,5 +19,7 @@ private:
   picojson::value v;
   std::string err;
 };
+
+}
 
 #endif

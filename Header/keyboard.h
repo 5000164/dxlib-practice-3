@@ -4,6 +4,8 @@
 #include "../Library/DxLib/DxLib.h"
 #include "./system.h"
 
+namespace keyboard {
+
 class Keyboard {
 public:
   void InputOnce();
@@ -12,5 +14,7 @@ public:
   bool IsPressUp();
   bool IsPressDown();
 };
+
+}
 
 #endif

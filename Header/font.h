@@ -4,6 +4,8 @@
 #include <string>
 #include "../Library/DxLib/DxLib.h"
 
+namespace font {
+
 class Font {
 public:
   Font();
@@ -17,5 +19,7 @@ private:
   int shadow_color_dx;
   int shadow_position[2];
 };
+
+}
 
 #endif

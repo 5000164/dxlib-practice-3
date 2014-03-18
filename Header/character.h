@@ -4,6 +4,8 @@
 #include <string>
 #include "./json.h"
 
+namespace character {
+
 class Character {
 public:
   Character(int, int, int);
@@ -21,5 +23,7 @@ private:
   int attack_point;
   int speed;
 };
+
+}
 
 #endif

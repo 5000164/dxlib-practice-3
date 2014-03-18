@@ -1,5 +1,7 @@
 #include "../Header/character.h"
 
+namespace character {
+
 Character::Character(int hit_point, int attack_point, int speed) {
   this->hit_point = hit_point;
   this->attack_point = attack_point;
@@ -8,7 +10,7 @@ Character::Character(int hit_point, int attack_point, int speed) {
 
 void Character::Init() {
   // 行動可能リスト読み込み
-  Json *action_list = new Json("./Data/character__action_list.json");
+  json::Json *action_list = new json::Json("./Data/character__action_list.json");
   action_list->Init();
   this->action_list1 = action_list->GetString("1");
   this->action_list2 = action_list->GetString("2");
@@ -44,4 +46,6 @@ void Character::Attack(Character *target) {
   target->hit_point = target->hit_point - this->attack_point;
 
   return;
+}
+
 }

@@ -1,7 +1,9 @@
 #include "../Header/keyboard.h"
 
+namespace keyboard {
+
 void Keyboard::InputOnce() {
-  System *system = new System();
+  dx_system::System *system = new dx_system::System();
 
   // ƒL[‚ª‚È‚É‚à‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢ó‘Ô‚É‚È‚é‚Ü‚Åi‚Ü‚È‚¢
   while (CheckHitKeyAll() != 0) {
@@ -56,4 +58,6 @@ bool Keyboard::IsPressDown() {
   }
 
   return result;
+}
+
 }

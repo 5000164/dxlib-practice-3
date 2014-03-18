@@ -1,5 +1,7 @@
 #include "../Header/window.h"
 
+namespace window {
+
 Window::Window() {
   // îwåiêFê›íË
   r = 30;
@@ -36,4 +38,6 @@ void Window::Init() {
   ChangeFont(font_family.c_str());
   SetFontSize(font_size);
   ChangeFontType(DX_FONTTYPE_ANTIALIASING_8X8);
+}
+
 }

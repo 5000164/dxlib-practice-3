@@ -1,6 +1,8 @@
 #include "../Header/battle.h"
 
-Battle::Battle(Character *c1, Character *c2) {
+namespace battle {
+
+Battle::Battle(character::Character *c1, character::Character *c2) {
   this->c1 = c1;
   this->c2 = c2;
 }
@@ -11,7 +13,7 @@ Battle::~Battle() {
 
 void Battle::Init() {
   // メッセージ読み込み
-  Json *message = new Json("./Data/battle__message.json");
+  json::Json *message = new json::Json("./Data/battle__message.json");
   message->Init();
   this->message1 = message->GetString("1");
   this->message2 = message->GetString("2");
@@ -23,7 +25,7 @@ void Battle::Init() {
 }
 
 void Battle::Run() {
-  System *system = new System();
+  dx_system::System *system = new dx_system::System();
   int action_id = 1;
   int action_result = 0;
   bool continuation_flag = true;
@@ -59,9 +61,9 @@ void Battle::Run() {
 }
 
 int Battle::SelectPhase(int action_id) {
-  System *system = new System();
-  Keyboard *keyboard = new Keyboard();
-  Rendering *rendering = new Rendering();
+  dx_system::System *system = new dx_system::System();
+  keyboard::Keyboard *keyboard = new keyboard::Keyboard();
+  rendering::Rendering *rendering = new rendering::Rendering();
   rendering->BattleMenu(action_id, c1->action_list1, c1->action_list2);
   rendering->BattleMessage(action_id, message3, std::to_string(c1->hit_point), message4, std::to_string(c2->hit_point));
   bool continuation_flag = true;
@@ -95,7 +97,7 @@ int Battle::SelectPhase(int action_id) {
 }
 
 int Battle::ActionPhase(int action_id) {
-  Rendering *rendering = new Rendering();
+  rendering::Rendering *rendering = new rendering::Rendering();
   int action_result = 0;
 
   switch (action_id) {
@@ -132,4 +134,6 @@ int Battle::ActionPhase(int action_id) {
   delete rendering;
 
   return action_result;
+}
+
 }

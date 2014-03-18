@@ -8,9 +8,11 @@
 #include "./keyboard.h"
 #include "./character.h"
 
+namespace battle {
+
 class Battle {
 public:
-  Battle(Character *, Character *);
+  Battle(character::Character *, character::Character *);
   ~Battle();
   void Init();
   void Run();
@@ -23,8 +25,10 @@ public:
   std::string message4;
 
 private:
-  Character *c1;
-  Character *c2;
+  character::Character *c1;
+  character::Character *c2;
 };
+
+}
 
 #endif

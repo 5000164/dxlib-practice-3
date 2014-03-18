@@ -1,7 +1,9 @@
 #include "../Header/rendering.h"
 
+namespace rendering {
+
 void Rendering::BattleMenu(int command_selector, std::string menu1, std::string menu2) {
-  Font font;
+  font::Font font;
 
   SetDrawScreen(DX_SCREEN_BACK);
   ClearDrawScreen();
@@ -22,7 +24,7 @@ void Rendering::BattleMenu(int command_selector, std::string menu1, std::string 
 }
 
 void Rendering::BattleMessage(int command_selector, std::string message_text1, std::string c1_hit_point, std::string message_text2, std::string c2_hit_point) {
-  Font font;
+  font::Font font;
 
   if (command_selector == 1) {
     int color_dx = GetColor(230, 230, 230);
@@ -39,4 +41,6 @@ void Rendering::BattleMessage(int command_selector, std::string message_text1, s
   font.Draw(c2_hit_point, 250, 180);
 
   return;
+}
+
 }

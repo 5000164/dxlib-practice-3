@@ -3,9 +3,13 @@
 
 #include "../Library/DxLib/DxLib.h"
 
+namespace dx_system {
+
 class System {
 public:
   void Watch();
 };
+
+}
 
 #endif

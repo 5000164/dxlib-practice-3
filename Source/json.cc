@@ -1,5 +1,7 @@
 #include "../Header/json.h"
 
+namespace json {
+
 Json::Json(std::string input_file) {
   this->input_file = input_file;
 }
@@ -18,4 +20,6 @@ void Json::Init() {
 std::string Json::GetString(std::string key) {
   picojson::object &o = v.get<picojson::object>();
   return o[key].get<std::string>();
+}
+
 }

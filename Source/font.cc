@@ -1,5 +1,7 @@
 #include "../Header/font.h"
 
+namespace font {
+
 Font::Font() {
   font_color[0] = 230;
   font_color[1] = 230;
@@ -18,4 +20,6 @@ void Font::Draw(std::string text, int x, int y) {
   DrawString(x, y, text.c_str(), font_color_dx);
 
   return;
+}
+
 }
