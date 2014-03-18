@@ -1,21 +1,25 @@
 dxlib-practice-3
 ================
-DXライブラリで項目選択で項目を選択する。
+DXライブラリの練習をするプロジェクトその3。  
+方向キーを入力して項目を選択。  
+エンターキーで項目を決定。  
+たたかうで攻撃を行う。  
+にげるでプログラムの終了。
 
 # 使用しているライブラリ
 
-DX Library  
+## DX Library  
 [ＤＸライブラリ置き場　ＨＯＭＥ](http://homepage2.nifty.com/natupaji/DxLib/index.html)
 
-PicoJSON  
+## PicoJSON  
 [kazuho/picojson](https://github.com/kazuho/picojson)
 
 # 使用しているライブラリのライセンス
 
-DX Library  
+## DX Library  
 DX Library Copyright (C) 2001-2014 Takumi Yamada.
 
-PicoJSON  
+## PicoJSON  
 Copyright 2009-2010 Cybozu Labs, Inc.  
 Copyright 2011 Kazuho Oku  
   
