@@ -12,8 +12,8 @@ public:
   ~Battle();
   void Init();
   void Run();
-  int SelectPhase(int);
-  int ActionPhase(int);
+  void SelectPhase();
+  void ActionPhase();
 
   std::string message1;
   std::string message2;

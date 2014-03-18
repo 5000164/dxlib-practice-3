@@ -37,8 +37,8 @@ void Battle::Run() {
 
   while (continuation_flag) {
     system->Watch();
-    action_id = this->SelectPhase(action_id);
-    action_result = this->ActionPhase(action_id);
+    this->SelectPhase();
+    this->ActionPhase();
 
     switch (action_result) {
       case 0: {
@@ -65,19 +65,18 @@ void Battle::Run() {
   return;
 }
 
-int Battle::SelectPhase(int action_id) {
+void Battle::SelectPhase() {
   dx_system::System *system = new dx_system::System();
   keyboard::Keyboard *keyboard = new keyboard::Keyboard();
   rendering::Rendering *rendering = new rendering::Rendering();
-  rendering->BattleMenu(action_id, c1->action_list1, c1->action_list2);
-  rendering->BattleMessage(action_id, message3, std::to_string(c1->hit_point), message4, std::to_string(c2->hit_point));
   bool continuation_flag = true;
+
+  rendering->Battle(this);
 
   while (continuation_flag) {
     system->Watch();
 
-    // キーボードの入力待ち
-    keyboard->InputOnce();
+    keyboard->WaitInputOnce();
 
     if (keyboard->IsPressReturn()) {
       continuation_flag = false;
@@ -94,12 +93,11 @@ int Battle::SelectPhase(int action_id) {
   delete keyboard;
   delete system;
 
-  return action_id;
+  return;
 }
 
-int Battle::ActionPhase(int action_id) {
+void Battle::ActionPhase() {
   rendering::Rendering *rendering = new rendering::Rendering();
-  int action_result = 0;
 
   switch (action_id) {
     case 1: {
@@ -130,9 +128,11 @@ int Battle::ActionPhase(int action_id) {
     }
   }
 
+  rendering->Battle(this);
+
   delete rendering;
 
-  return action_result;
+  return;
 }
 
 }

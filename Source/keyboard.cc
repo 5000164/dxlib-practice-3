@@ -4,7 +4,7 @@
 
 namespace keyboard {
 
-void Keyboard::InputOnce() {
+  void Keyboard::WaitInputOnce() {
   dx_system::System *system = new dx_system::System();
 
   // ƒL[‚ª‚È‚É‚à‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢ó‘Ô‚É‚È‚é‚Ü‚Åi‚Ü‚È‚¢

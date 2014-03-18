@@ -5,7 +5,7 @@ namespace keyboard {
 
 class Keyboard {
 public:
-  void InputOnce();
+  void WaitInputOnce();
   bool IsPressEsc();
   bool IsPressReturn();
   bool IsPressUp();
